@@ -1,0 +1,15 @@
+ESP32-LAMPADA/
+│
+├── backend/
+│   ├── fbConfig.js
+│   └── fbService.js
+│
+├── front/
+│   ├── index.html
+│   ├── main.js
+│   └── style.css
+│
+├── src/
+│   └── main.cpp
+│
+└── platformio.ini

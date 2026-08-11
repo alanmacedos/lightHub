@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+main {
+    font-family: "Google Sans Flex";
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tittle {
+    margin: 20px;
+}
+
+.tittle h1{
+    margin-bottom: 25px;
+    font-size: 90px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.button button{
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    color: white;
+    background-color: #222;
+    border: 3px solid #555;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.button button:hover {
+    border-color: white;
+}
+
+#onButton.active {
+    background-color: green;
+    border-color: #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+#offButton.active {
+    background-color: red;
+    border-color: #ff5555;
+    box-shadow: 0 0 10px #ff5555;
+}
+
+#onButton,
+#offButton {
+    background-color: #222;
+}
+
+.button label {
+    color: white;
+}

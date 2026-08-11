@@ -1,8 +1,9 @@
 #include <WiFi.h>
 #include <Firebase_ESP_Client.h>
+#include <ArduinoJson.h>
 
 /* 1. Define the WiFi credentials */
-#define WIFI_SSID "S23 de Erick"
+#define WIFI_SSID "flexa10"
 #define WIFI_PASSWORD "12345678"
 
 /* 2. Define the API Key */
@@ -15,6 +16,8 @@
 #define USER_EMAIL "esp-code@gmail.com"
 #define USER_PASSWORD "alauinha"
 
+#define SECRET "7RqsShJDeJTMpbkCAICQuZDfz4fYNS0XXCUiaDdl"
+
 // Define Firebase Data object
 FirebaseData fbdo;
 
@@ -23,7 +26,7 @@ FirebaseConfig config;
 
 unsigned long sendDataPrevMillis = 0;
 
-const int ledPin = 15;
+const int ledPin = 18;
 
 void setup()
 {
