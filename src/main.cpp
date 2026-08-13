@@ -1,6 +1,5 @@
 #include <WiFi.h>
 #include <Firebase_ESP_Client.h>
-#include <ArduinoJson.h>
 
 /* 1. Define the WiFi credentials */
 #define WIFI_SSID "flexa10"
@@ -15,8 +14,6 @@
 /* 4. Define the user Email and password that already added in your project */
 #define USER_EMAIL "esp-code@gmail.com"
 #define USER_PASSWORD "alauinha"
-
-#define SECRET "7RqsShJDeJTMpbkCAICQuZDfz4fYNS0XXCUiaDdl"
 
 // Define Firebase Data object
 FirebaseData fbdo;
