@@ -1,4 +1,4 @@
-import { setLedState } from "../backend/fbService.js";
+import { setLedState } from "./backend/fbService.js";
 
 const onButton = document.getElementById("onButton");
 const offButton = document.getElementById("offButton");
