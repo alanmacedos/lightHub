@@ -13,4 +13,4 @@ export function listenLedState(callback) {
     });
 }
 
-export { setLedState, listenLedState };
+export { setLedState };
