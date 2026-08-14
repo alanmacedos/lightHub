@@ -2,7 +2,7 @@
 #include <Firebase_ESP_Client.h>
 
 /* 1. Define the WiFi credentials */
-#define WIFI_SSID "flexa10"
+#define WIFI_SSID "iPhone de Alan"
 #define WIFI_PASSWORD "12345678"
 
 /* 2. Define the API Key */
@@ -36,6 +36,9 @@ void streamTimeoutCallback(bool timeout)
 void streamCallback (FirebaseStream data)
 {
   int state = data.intData();
+
+  Serial.print("Novo estado recebido: ");
+  Serial.println(state);
 
   digitalWrite(ledPin, state);
 }
@@ -84,13 +87,12 @@ void setup()
   Firebase.RTDB.setStreamCallback(&stream, streamCallback, streamTimeoutCallback);
 
   // Limit the size of response payload to be collected in FirebaseData
-  fbdo.setResponseSize(2048);
+  stream.setResponseSize(2048);
 
   config.timeout.serverResponse = 10 * 1000;
 }
 
 void loop()
 {
-  // Firebase.ready() should be called repeatedly to handle authentication tasks.
-
+    Firebase.ready();
 }
