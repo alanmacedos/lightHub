@@ -18,12 +18,27 @@
 // Define Firebase Data object
 FirebaseData fbdo;
 
+FirebaseData stream;
+
 FirebaseAuth auth;
 FirebaseConfig config;
 
-unsigned long sendDataPrevMillis = 0;
+const int ledPin = 15;
 
-const int ledPin = 18;
+void streamTimeoutCallback(bool timeout)
+{
+    if (timeout)
+    {
+        Serial.println("Stream timeout, tentando reconectar...");
+    }
+}
+
+void streamCallback (FirebaseStream data)
+{
+  int state = data.intData();
+
+  digitalWrite(ledPin, state);
+}
 
 void setup()
 {
@@ -61,25 +76,21 @@ void setup()
   // Large data transmission may require larger RX buffer, otherwise connection issue or data read time out can be occurred.
   fbdo.setBSSLBufferSize(4096 /* Rx buffer size in bytes from 512 - 16384 */, 1024 /* Tx buffer size in bytes from 512 - 16384 */);
 
-  // Limit the size of response payload to be collected in FirebaseData
-  fbdo.setResponseSize(2048);
+
   Firebase.begin(&config, &auth);
   Firebase.setDoubleDigits(5);
+
+  Firebase.RTDB.beginStream(&stream, "/led/state");
+  Firebase.RTDB.setStreamCallback(&stream, streamCallback, streamTimeoutCallback);
+
+  // Limit the size of response payload to be collected in FirebaseData
+  fbdo.setResponseSize(2048);
+
   config.timeout.serverResponse = 10 * 1000;
 }
 
 void loop()
 {
   // Firebase.ready() should be called repeatedly to handle authentication tasks.
-  if (Firebase.ready() && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0))
-  {
-    sendDataPrevMillis = millis();
 
-  int ledState;
-   if(Firebase.RTDB.getInt(&fbdo, "/led/state", &ledState)){
-    digitalWrite(ledPin, ledState);
-   }else{
-    Serial.println(fbdo.errorReason().c_str());
-   }
-  }
 }
